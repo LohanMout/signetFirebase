@@ -5,7 +5,7 @@ import ThreeSixtyIcon from '@mui/icons-material/ThreeSixty';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
-export default function Dossier({id, titre, couleur, dateModif}) {
+export default function Dossier({id, titre, couverture, couleur, dateModif, supprimerDossier}) {
   let objStyle = {
     backgroundColor: couleur
   }
@@ -15,8 +15,12 @@ export default function Dossier({id, titre, couleur, dateModif}) {
         <IconButton className='btn-dossier tourner' color='primary'>
           <ThreeSixtyIcon/>
         </IconButton>
-        <img src={`images-dossiers/${id}.png`} alt={titre}/>
-        <IconButton className='btn-dossier supprimer' color='secondary'>
+        <img src={couverture} alt={titre}/>
+        <IconButton 
+          className='btn-dossier supprimer' 
+          color='secondary'
+          onClick={()=>supprimerDossier(id)}
+        >
           <DeleteIcon/>
         </IconButton>
       </div>
