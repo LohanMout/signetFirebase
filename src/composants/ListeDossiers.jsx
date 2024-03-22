@@ -3,23 +3,20 @@ import Dossier from './Dossier';
 import './ListeDossiers.scss';
 
 export default function ListeDossiers({dossiers, setDossiers}) {
-  [
-    {
-      id: "2342-rte3454-tertert4534-gdfgdf455",
-      titre: "Architecture"
-    },
-    {
-      id: "334555444-gdfg-tertert4534-gdfgdf455",
-      titre: "Philosophie"
-    },
-    {
-      id: "354534-rte3454-tertert4534-gdfgdf455",
-      titre: "JavaScript"
-    }
-  ]
-
+  
   function supprimerDossier(id) {
     setDossiers(dossiers.filter(elt => elt.id != id))
+  }
+
+  function modifierDossier(id, titre, couverture, couleur) {
+    setDossiers(dossiers.map(
+      doss => {
+        if(doss.id == id) {
+          return ({id, titre, couverture, couleur});
+        }
+        return doss;
+      }
+    ));
   }
 
   return (
@@ -32,7 +29,8 @@ export default function ListeDossiers({dossiers, setDossiers}) {
           dossier =>  <li key={dossier.id}>
                         <Dossier 
                           {...dossier} 
-                          supprimerDossier={supprimerDossier} 
+                          supprimer={supprimerDossier} 
+                          modifier={modifierDossier}
                         />
                       </li>
         )

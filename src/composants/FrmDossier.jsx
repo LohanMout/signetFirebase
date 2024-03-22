@@ -7,19 +7,30 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { TwitterPicker } from 'react-color';
 import { useState } from 'react';
 
-function FrmDossier({ouvert, setOuvert, actionDossier}) {
-  const [titre, setTitre] = useState("");
-  const [couverture, setCouverture] = useState("");
-  const [couleur, setCouleur] = useState("#000");
+function FrmDossier({ouvert, setOuvert, actionDossier, dossierPrec=null}) {
+  const [titre, setTitre] = useState(dossierPrec?dossierPrec.titre:"");
+  const [couverture, setCouverture] = useState(dossierPrec?dossierPrec.couverture:"");
+  const [couleur, setCouleur] = useState(dossierPrec?dossierPrec.couleur:"#000");
 
   console.log("Les valeurs du formulaire : ", titre, couverture, couleur);
 
   function gererFermer() {
+    if(!dossierPrec) {
+      setTitre("");
+      setCouverture("");
+      setCouleur("#000");
+    }
     setOuvert(false);
   }
 
   function gererActionDossier() {
-    actionDossier(titre, couverture, couleur);
+    if(!dossierPrec) {
+      actionDossier(titre, couverture, couleur);
+    }
+    else {
+      actionDossier(dossierPrec.id, titre, couverture, couleur);
+    }
+    
     gererFermer();
   }
 
