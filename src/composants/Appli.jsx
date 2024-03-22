@@ -27,13 +27,13 @@ export default function Appli() {
   /**
    * Ajoute un dossier
    */
-  function ajouterDossier(titre, couverture, couleur) {
+  function ajouterDossier(titre, couverture, couleur, dateModif) {
     let nouveauDossier = {
       id: window.crypto.randomUUID(),
       titre: titre,
       couverture: couverture,
       couleur: couleur,
-      dateModif: (new Date()).toUTCString()
+      dateModif: dateModif
     };
     setDossiers([...dossiers, nouveauDossier]);
   }

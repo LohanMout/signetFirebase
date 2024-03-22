@@ -24,11 +24,12 @@ function FrmDossier({ouvert, setOuvert, actionDossier, dossierPrec=null}) {
   }
 
   function gererActionDossier() {
+    let dateModif = new Date().getTime();
     if(!dossierPrec) {
-      actionDossier(titre, couverture, couleur);
+      actionDossier(titre, couverture, couleur, dateModif);
     }
     else {
-      actionDossier(dossierPrec.id, titre, couverture, couleur);
+      actionDossier(dossierPrec.id, titre, couverture, couleur, dateModif);
     }
     
     gererFermer();

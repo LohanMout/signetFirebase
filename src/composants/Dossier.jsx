@@ -1,4 +1,6 @@
 import './Dossier.scss';
+// Importer le chemin de l'image par défaut
+import couvertureDefaut from '../images/couverture-defaut.jpg';
 
 import IconButton from '@mui/material/IconButton';
 import ThreeSixtyIcon from '@mui/icons-material/ThreeSixty';
@@ -30,7 +32,7 @@ export default function Dossier({
         <IconButton className='btn-dossier tourner' color='primary'>
           <ThreeSixtyIcon/>
         </IconButton>
-        <img src={couverture} alt={titre}/>
+        <img src={couverture || couvertureDefaut} alt={titre}/>
         <IconButton 
           className='btn-dossier supprimer' 
           color='secondary'
