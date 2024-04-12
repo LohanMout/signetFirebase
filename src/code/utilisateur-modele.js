@@ -1,6 +1,6 @@
-import { signInWithPopup, signOut } from "firebase/auth";
-import { firebaseAuth, googleProvider } from "./init";
-
+import { onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
+import { firebaseAuth, googleProvider, bd } from "./init";
+import { setDoc } from "firebase/firestore";
 /**
  * Permet à un utilisateur de se connecter en utilisant l'authentification
  * fédérée Google.
@@ -13,4 +13,15 @@ export function connexion() {
 
 export function deconnexion() {
   signOut(firebaseAuth);
+}
+
+export function observerEtatConnexion(mutateurUtilisateur){
+  onAuthStateChanged(firebaseAuth, u=> {
+      if(u){
+        //enregistrer les donnees de l'utilisateur dans firebase
+        //setDoc()
+      }
+      mutateurUtilisateur(u)
+  }
+);
 }
