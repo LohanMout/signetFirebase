@@ -14,3 +14,7 @@ export const googleProvider = new GoogleAuthProvider();
 
 //initialiser Firestore
 export const bd = getFirestore(appli);
+
+//raccourci pour rajouter des collecvtions
+export const collUtilisateurs = "signets-utilisateur";
+export const collDossiers = "dossiers";
