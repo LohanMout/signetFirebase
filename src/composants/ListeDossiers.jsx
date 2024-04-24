@@ -4,18 +4,26 @@ import Dossier from './Dossier';
 import { motion } from 'framer-motion';
 
 import './ListeDossiers.scss';
+import { modifier, supprimer } from '../code/dossier-modele';
 
-export default function ListeDossiers({dossiers, setDossiers}) {
+export default function ListeDossiers({dossiers, setDossiers, idUtil}) {
   
-  function supprimerDossier(id) {
-    setDossiers(dossiers.filter(elt => elt.id != id))
+  function supprimerDossier(idDossier) {
+    //supprimer sur firestore
+    supprimer(idUtil, idDossier);
+    //supprimer localement
+    setDossiers(dossiers.filter(elt => elt.id != idDossier))
   }
 
-  function modifierDossier(id, titre, couverture, couleur, dateModif) {
+  function modifierDossier(idDossier, titre, couverture, couleur, dateModif) {
+    //modifier sur firestore
+    const dossierModif = {couleur, titre, couverture, dateModif};
+    modifier(idUtil, idDossier, dossierModif);
+    //modifier localement
     setDossiers(dossiers.map(
       doss => {
-        if(doss.id == id) {
-          return ({id, titre, couverture, couleur, dateModif});
+        if(doss.id == idDossier) {
+          return ({idDossier, ...dossierModif});
         }
         return doss;
       }

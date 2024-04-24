@@ -53,6 +53,7 @@ export default function PageUtilisateur({util}) {
           <ListeDossiers 
             dossiers={dossiers} 
             setDossiers={setDossiers} 
+            idUtil={util.uid}
           />
           <FrmDossier 
             ouvert={frmDossierOuvert} 

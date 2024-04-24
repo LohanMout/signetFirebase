@@ -24,7 +24,7 @@ function FrmDossier({ouvert, setOuvert, actionDossier, dossierPrec=null}) {
   }
 
   function gererActionDossier() {
-    let dateModif = new Date().getTime();
+    let dateModif = new Date().getTime(); ///////////////////////////////////////////////////////////////////////
     if(!dossierPrec) {
       actionDossier(titre, couverture, couleur, dateModif);
     }
